@@ -28,10 +28,12 @@ class ThemeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Nova::serving(function (ServingNova $event) {
-            Nova::style('nova-dark-theme', __DIR__ . '/../dist/css/theme.css');
-            Nova::script('nova-dark-theme', __DIR__ . '/../dist/js/theme.js');
-        });
+        if(config('nova.theme', 'default') === 'dark'){
+            Nova::serving(function (ServingNova $event) {
+                Nova::style('nova-dark-theme', __DIR__ . '/../dist/css/theme.css');
+                Nova::script('nova-dark-theme', __DIR__ . '/../dist/js/theme.js');
+            });
+        }
     }
 
     /**
